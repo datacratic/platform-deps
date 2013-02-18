@@ -1,0 +1,51 @@
+[submodule "zookeeper"]
+	path = zookeeper
+	url = https://github.com/apache/zookeeper.git
+[submodule "boost-svn"]
+	path = boost-svn
+	url = https://github.com/datacratic/boost-svn.git
+[submodule "cityhash"]
+	path = cityhash
+	url = https://github.com/jeremybarnes/cityhash.git
+[submodule "curl"]
+	path = curl
+	url = https://github.com/bagder/curl.git
+[submodule "curlpp"]
+	path = curlpp
+	url = https://github.com/datacratic/curlpp.git
+[submodule "gperftools"]
+	path = gperftools
+	url = https://github.com/datacratic/gperftools.git
+[submodule "hiredis"]
+	path = hiredis
+	url = https://github.com/redis/hiredis.git
+[submodule "jq"]
+	path = jq
+	url = https://github.com/stedolan/jq.git
+[submodule "libssh2"]
+	path = libssh2
+	url = https://github.com/datacratic/libssh2.git
+[submodule "mongo-cxx-driver"]
+	path = mongo-cxx-driver
+	url = https://github.com/datacratic/mongo-cxx-driver.git
+[submodule "node"]
+	path = node
+	url = https://github.com/datacratic/node.git
+[submodule "protobuf"]
+	path = protobuf
+	url = https://github.com/datacratic/protobuf.git
+[submodule "redis"]
+	path = redis
+	url = https://github.com/datacratic/redis.git
+[submodule "snappy"]
+	path = snappy
+	url = https://github.com/datacratic/snappy.git
+[submodule "thrift"]
+	path = thrift
+	url = https://github.com/datacratic/thrift.git
+[submodule "userspace-rcu"]
+	path = userspace-rcu
+	url = https://github.com/datacratic/userspace-rcu.git
+[submodule "zeromq3-x"]
+	path = zeromq3-x
+	url = https://github.com/datacratic/zeromq3-x.git
