@@ -49,7 +49,7 @@ install_gperftools:
 	cd gperftools && ./configure --prefix $(TARGET) --enable-frame-pointers && make all CXXFLAGS="-g -O3" && make install
 
 install_zookeeper:
-	cd zookeeper-3.4.5 && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile_jute) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j8 -k install && make doxygen-doc
+	cd zookeeper && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile_jute) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j8 -k install && make doxygen-doc
 
 install_redis:
 	cd redis && make -j8 -k PREFIX=$(TARGET) install
