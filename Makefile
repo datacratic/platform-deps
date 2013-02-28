@@ -1,4 +1,9 @@
+
+# Determine where the install directory is located.
 TARGET?=$(HOME)/local
+
+# Determines the number of parallel jobs that will be used to build each of the submodules
+JOBS?=8
 
 .PHONY: install_node install_boost clean_boost install_userspacercu install_hiredis install_snappy install_cityhash
 
@@ -7,7 +12,7 @@ install_node:
 
 install_boost:
 	if [ ! -f boost-svn/b2 ] ; then cd boost-svn && ./bootstrap.sh --prefix=$(TARGET) ; fi
-	cd boost-svn && ./b2 -j8 variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
+	cd boost-svn && ./b2 -j$(JOBS) variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
 clean_boost:
 	cd boost-svn && rm -rf ./b2 ./bin.v2 ./bjam ./bootstrap.log ./project-config.jam ./tools/build/v2/engine/bootstrap/ ./tools/build/v2/engine/bin.linuxx86_64/
 
@@ -28,35 +33,35 @@ install_cityhash:
 	cd cityhash && ./configure --enable-sse4.2 --prefix $(TARGET) && make all check CXXFLAGS="-g -O3 -msse4.2" && make install
 
 install_zeromq:
-	cd zeromq3-x && ./autogen.sh && CXX="ccache g++" CC="ccache gcc" ./configure --prefix $(TARGET) && CXX="ccache g++" CC="ccache gcc" make -j8 -k && make install
+	cd zeromq3-x && ./autogen.sh && CXX="ccache g++" CC="ccache gcc" ./configure --prefix $(TARGET) && CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k && make install
 
 install_libssh2:
-	cd libssh2 && ./buildconf && ./configure --prefix $(TARGET) && make -j8 -k && make install
+	cd libssh2 && ./buildconf && ./configure --prefix $(TARGET) && make -j$(JOBS) -k && make install
 
 install_libcurl:
-	cd curl && ./buildconf && ./configure --prefix $(TARGET) --with-libssh2=$(TARGET) && make -j8 -k && make install
+	cd curl && ./buildconf && ./configure --prefix $(TARGET) --with-libssh2=$(TARGET) && make -j$(JOBS) -k && make install
 
 install_curlpp:
-	cd curlpp && ./autogen.sh && CXX="ccache g++" CXXFLAGS="-I$(TARGET)/include" CFLAGS="-I$(TARGET)/include" CC="ccache gcc" ./configure --prefix $(TARGET) --with-curl=$(TARGET) --with-boost=$(TARGET)/ && CXX="ccache g++" CC="ccache gcc" make -j8 -k && make install
+	cd curlpp && ./autogen.sh && CXX="ccache g++" CXXFLAGS="-I$(TARGET)/include" CFLAGS="-I$(TARGET)/include" CC="ccache gcc" ./configure --prefix $(TARGET) --with-curl=$(TARGET) --with-boost=$(TARGET)/ && CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k && make install
 	rm -f $(TARGET)/include/curlpp/config.win32.h
 	cp curlpp/include/curlpp/config.h $(TARGET)/include/curlpp/config.h
 	echo '#include "curlpp/config.h"' > $(TARGET)/include/curlpp/internal/global.h
 
 install_thrift:
-	cd thrift && ./bootstrap.sh && CXX="ccache g++" CC="ccache gcc" ./configure --prefix $(TARGET) --without-ruby --without-python --without-erlang --without-php --with-boost=$(TARGET)/ && (CXX="ccache g++" CC="ccache gcc" make -j8 -k install;  CXX="ccache g++" CC="ccache gcc" make -j8 -k install)
+	cd thrift && ./bootstrap.sh && CXX="ccache g++" CC="ccache gcc" ./configure --prefix $(TARGET) --without-ruby --without-python --without-erlang --without-php --with-boost=$(TARGET)/ && (CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k install;  CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k install)
 
 install_gperftools:
 	cd gperftools && ./configure --prefix $(TARGET) --enable-frame-pointers && make all CXXFLAGS="-g -O3" && make install
 
 install_zookeeper:
-	cd zookeeper && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j8 -k install && make doxygen-doc && rm -f ~/local/bin/zookeeper && cd ../.. && ln -s `pwd` ~/local/bin/zookeeper
+	cd zookeeper && (ulimit -v unlimited; JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64/ ant compile) && cd src/c && autoreconf -if && ./configure --prefix $(TARGET) && make -j$(JOBS) -k install && make doxygen-doc && rm -f ~/local/bin/zookeeper && cd ../.. && ln -s `pwd` ~/local/bin/zookeeper
 
 install_redis:
-	cd redis && make -j8 -k PREFIX=$(TARGET) install
+	cd redis && make -j$(JOBS) -k PREFIX=$(TARGET) install
 
 install_mongodb_cxx_driver:
 	rm -rf $(TARGET)/include/mongo
-	cd mongo-cxx-driver && scons -j8 install --prefix $(TARGET)
+	cd mongo-cxx-driver && scons -j$(JOBS) install --prefix $(TARGET)
 
 install_jq:
 	cd jq && make -k install prefix=$(TARGET)
