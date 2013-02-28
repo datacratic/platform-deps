@@ -8,7 +8,7 @@ JOBS?=8
 .PHONY: install_node install_boost clean_boost install_userspacercu install_hiredis install_snappy install_cityhash
 
 install_node:
-	cd node && ./recoset_build_node.sh
+	JOBS=$(JOBS) cd node && ./recoset_build_node.sh
 
 install_boost:
 	if [ ! -f boost-svn/b2 ] ; then cd boost-svn && ./bootstrap.sh --prefix=$(TARGET) ; fi
