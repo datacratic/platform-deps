@@ -66,7 +66,7 @@ install_mongodb_cxx_driver:
 install_jq:
 	cd jq && make -k install prefix=$(TARGET)
 
-all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_jq
+all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver
 
 
 
