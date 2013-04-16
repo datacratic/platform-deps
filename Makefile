@@ -6,7 +6,7 @@ TARGET?=$(HOME)/local
 JOBS?=8
 
 
-all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver
+all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_cairomm
 
 .PHONY: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_jq
 
@@ -18,7 +18,6 @@ install_boost:
 	cd boost-svn && ./b2 -j$(JOBS) variant=release link=shared threading=multi runtime-link=shared toolset=gcc --without=graph --without-graph_parallel --without-mpi install
 clean_boost:
 	cd boost-svn && rm -rf ./b2 ./bin.v2 ./bjam ./bootstrap.log ./project-config.jam ./tools/build/v2/engine/bootstrap/ ./tools/build/v2/engine/bin.linuxx86_64/
-
 
 install_userspacercu:
 	cd userspace-rcu/ && ./bootstrap && ./configure --prefix=$(TARGET) && make install
@@ -69,6 +68,8 @@ install_mongodb_cxx_driver:
 install_jq:
 	cd jq && make -k install prefix=$(TARGET)
 
+install_cairomm:
+	cd cairomm && ./autogen.sh && ./configure --prefix=$(TARGET) && make install
 
 # Helps troubleshooting deployments via scripts.
 .PHONY: test-deploy

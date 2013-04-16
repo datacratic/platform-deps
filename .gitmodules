@@ -49,3 +49,6 @@
 [submodule "zeromq3-x"]
 	path = zeromq3-x
 	url = https://github.com/datacratic/zeromq3-x.git
+[submodule "cairomm"]
+	path = cairomm
+	url = git://git.cairographics.org/git/cairomm
