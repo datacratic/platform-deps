@@ -40,9 +40,6 @@
 [submodule "snappy"]
 	path = snappy
 	url = https://github.com/datacratic/snappy.git
-[submodule "thrift"]
-	path = thrift
-	url = https://github.com/datacratic/thrift.git
 [submodule "userspace-rcu"]
 	path = userspace-rcu
 	url = https://github.com/datacratic/userspace-rcu.git

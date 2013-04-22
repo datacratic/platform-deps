@@ -6,9 +6,9 @@ TARGET?=$(HOME)/local
 JOBS?=8
 
 
-all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_cairomm
+all: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_cairomm
 
-.PHONY: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_thrift install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_jq
+.PHONY: install_node install_boost install_userspacercu install_hiredis install_snappy install_cityhash install_zeromq install_libssh2 install_libcurl install_curlpp install_protobuf install_gperftools install_zookeeper install_redis install_mongodb_cxx_driver install_jq
 
 install_node:
 	JOBS=$(JOBS) cd node && ./recoset_build_node.sh
@@ -48,9 +48,6 @@ install_curlpp:
 	rm -f $(TARGET)/include/curlpp/config.win32.h
 	cp curlpp/include/curlpp/config.h $(TARGET)/include/curlpp/config.h
 	echo '#include "curlpp/config.h"' > $(TARGET)/include/curlpp/internal/global.h
-
-install_thrift:
-	cd thrift && ./bootstrap.sh && CXX="ccache g++" CC="ccache gcc" ./configure --prefix $(TARGET) --without-ruby --without-python --without-erlang --without-php --with-boost=$(TARGET)/ && (CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k install;  CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k install)
 
 install_gperftools:
 	cd gperftools && ./configure --prefix $(TARGET) --enable-frame-pointers && make all CXXFLAGS="-g -O3" && make install
