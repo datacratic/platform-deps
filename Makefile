@@ -31,8 +31,16 @@ install_snappy:
 install_protobuf:
 	cd protobuf && ./autogen.sh && ./configure --prefix $(TARGET) && make install
 
+
+DISABLE_SSE42 ?= 0
+ifneq ($(DISABLE_SSE42),0)
+CITYHASH_CXXFLAGS := -mno-sse4.2
+else
+CITYHASH_CONFIGURE_FLAGS := --enable-sse4.2
+endif
+
 install_cityhash:
-	cd cityhash && ./configure --enable-sse4.2 --prefix $(TARGET) && make all check CXXFLAGS="-g -O3 -msse4.2" && make install
+	cd cityhash && ./configure $(CITYHASH_CONFIGURE_FLAGS) --prefix $(TARGET) && make all check CXXFLAGS="-g -O3 $(CITYHASH_CXXFLAGS)" && make install
 
 install_zeromq:
 	cd zeromq3-x && ./autogen.sh && CXX="ccache g++" CC="ccache gcc" ./configure --prefix $(TARGET) && CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k && make install
