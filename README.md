@@ -2,7 +2,9 @@
 
 Container repo for Datacratic platform dependencies to be installed per-user
 
-After cloning run: git submodule update --init && make all
+After cloning run:
+
+    git submodule update --init && make
 
 ## Troubleshooting ##
 
@@ -20,12 +22,16 @@ do this:
 2. Reduce the number of parallel jobs that are used to build each submodule by
    overwritting the JOBS variable for our Makefile.
 
-Here's an example of how to tweak both parameters from the command line:
+We **don't recommend** it but here's an example of how to tweak both parameters:
 
-   nice make -kj2 JOBS=2
+    nice make -j2 JOBS=2
 
-Note that we don't recommend specifying a -j parameter because it has a
+We don't recommend specifying a -j parameter because it has a
 multiplicative effect on the JOBS variable.
+
+Instead, if for example you have 4 cores at your disposal, use
+
+    nice make JOBS=4
 
 
 ### Illegal Instruction ###
