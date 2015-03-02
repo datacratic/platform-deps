@@ -31,6 +31,8 @@ install_snappy:
 install_protobuf:
 	cd protobuf && ./autogen.sh && ./configure --prefix $(TARGET) && make install
 
+install_libgit:
+	cd libgit2 && mkdir -p build && cd build && cmake .. -DCMAKE_INSTALL_PREFIX=$(TARGET) && cmake --build . --target install
 
 DISABLE_SSE42 ?= 0
 ifneq ($(DISABLE_SSE42),0)
