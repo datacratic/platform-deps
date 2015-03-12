@@ -14,13 +14,13 @@ The packages built by default using "make" depend on the following packages,
 which can be installed via "apt-get install":
 
     flex bison pkg-config scons make automake libtool autoconf git-core g++
-libbz2-dev liblzma-dev libcrypto++-dev libpqxx3-dev libicu-dev
-google-perftools libgoogle-perftools-dev libACE-dev uuid-dev liblapack-dev
-libblas-dev libevent-dev flex bison pkg-config python-dev python-numpy
-python-numpy-dev python-matplotlib libcppunit-dev python-setuptools ant
-openjdk-7-jdk libcppunit-dev doxygen libfreetype6-dev libpng-dev python-tk
-tk-dev python-virtualenv liblzma-dev libsigc++-2.0-dev libcairo2-dev
-libcairomm-1.0-dev r-base-core cmake
+    libbz2-dev liblzma-dev libcrypto++-dev libpqxx3-dev libicu-dev
+    google-perftools libgoogle-perftools-dev libACE-dev uuid-dev liblapack-dev
+    libblas-dev libevent-dev flex bison pkg-config python-dev python-numpy
+    python-numpy-dev python-matplotlib libcppunit-dev python-setuptools ant
+    openjdk-7-jdk libcppunit-dev doxygen libfreetype6-dev libpng-dev python-tk
+    tk-dev python-virtualenv liblzma-dev libsigc++-2.0-dev libcairo2-dev
+    libcairomm-1.0-dev r-base-core cmake
 
 ### libhdfs3
 
