@@ -6,6 +6,29 @@ After cloning run:
 
     git submodule update --init && make
 
+## Dependencies ##
+
+### Default packages
+
+The packages built by default using "make" depend on the following packages,
+which can be installed via "apt-get install":
+
+    flex bison pkg-config scons make automake libtool autoconf git-core g++
+libbz2-dev liblzma-dev libcrypto++-dev libpqxx3-dev libicu-dev
+google-perftools libgoogle-perftools-dev libACE-dev uuid-dev liblapack-dev
+libblas-dev libevent-dev flex bison pkg-config python-dev python-numpy
+python-numpy-dev python-matplotlib libcppunit-dev python-setuptools ant
+openjdk-7-jdk libcppunit-dev doxygen libfreetype6-dev libpng-dev python-tk
+tk-dev python-virtualenv liblzma-dev libsigc++-2.0-dev libcairo2-dev
+libcairomm-1.0-dev r-base-core cmake
+
+### libhdfs3
+
+In addition to the above packages, the following packages are required if you
+also want to install libhdfs3 (via "make install_libhdfs3"):
+
+    libxml2-dev libgsasl7-dev
+
 ## Troubleshooting ##
 
 ### GCC Internal Compiler Errors ###
