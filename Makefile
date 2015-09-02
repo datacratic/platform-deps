@@ -76,7 +76,7 @@ install_mongodb_cxx_driver:
 	rm -rf $(TARGET)/include/mongo
 	rm -f $(TARGET)/lib/libmongoclient.a
 	rm -f $(TARGET)/lib/libmongoclient.so
-	cd mongo-cxx-driver && scons -j$(JOBS) install --prefix $(TARGET) --extrapath=$(HOME)/local --ssl --cpppath=$(HOME)/local --propagate-shell-environment
+	cd mongo-cxx-driver && scons -j$(JOBS) install --prefix $(TARGET) --extrapath=$(HOME)/local --ssl --cpppath=$(HOME)/local --propagate-shell-environment --c++11=on --use-sasl-client=cyrus --sharedclient
 
 install_jq:
 	cd jq && make -k install prefix=$(TARGET)
