@@ -10,9 +10,6 @@
 [submodule "curl"]
 	path = curl
 	url = https://github.com/bagder/curl.git
-[submodule "curlpp"]
-	path = curlpp
-	url = https://github.com/datacratic/curlpp.git
 [submodule "gperftools"]
 	path = gperftools
 	url = https://github.com/datacratic/gperftools.git
