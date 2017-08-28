@@ -57,12 +57,6 @@ install_libssh2:
 install_libcurl:
 	cd curl && ./buildconf && ./configure --prefix $(TARGET) --with-libssh2=$(TARGET) && make -j$(JOBS) -k && make install
 
-install_curlpp: install_libcurl
-	cd curlpp && ./autogen.sh && CXX="ccache g++" CXXFLAGS="-I$(TARGET)/include" CFLAGS="-I$(TARGET)/include" LIBS="-L$(TARGET)/lib" CC="ccache gcc" ./configure --prefix $(TARGET) --with-boost=$(TARGET)/ --disable-static && CXX="ccache g++" CC="ccache gcc" make -j$(JOBS) -k && make install
-	rm -f $(TARGET)/include/curlpp/config.win32.h
-	cp curlpp/include/curlpp/config.h $(TARGET)/include/curlpp/config.h
-	echo '#include "curlpp/config.h"' > $(TARGET)/include/curlpp/internal/global.h
-
 install_gperftools:
 	cd gperftools && ./configure --prefix $(TARGET) --enable-frame-pointers && make all CXXFLAGS="-g -O3" && make install
 
