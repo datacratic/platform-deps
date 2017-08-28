@@ -20,7 +20,7 @@ which can be installed via "apt-get install":
     python-numpy-dev python-matplotlib libcppunit-dev python-setuptools ant
     openjdk-7-jdk libcppunit-dev doxygen libfreetype6-dev libpng-dev python-tk
     tk-dev python-virtualenv liblzma-dev libsigc++-2.0-dev libcairo2-dev
-    libcairomm-1.0-dev r-base-core cmake ccache
+    libcairomm-1.0-dev r-base-core cmake ccache libsasl2-dev mm-common
 
 ### libhdfs3
 
